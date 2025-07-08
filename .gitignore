@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# VS Code, PyCharm
+.vscode/
+.idea/
+
+# Django
+db.sqlite3
+*.log
+*.pot
+*.pyc
+media/
+staticfiles/
+
+# Env
+.env
+
+# Docker
+*.pid
+*.db
+*.sock
+docker-compose.override.yml
+
+# Migrations
+**/migrations/
+!*/migrations/__init__.py
+
+# Coverage / testing
+.coverage
+htmlcov/
+.cache/
+pytest_cache/
+
+# Mac / Linux / Windows system
+.DS_Store
+Thumbs.db
