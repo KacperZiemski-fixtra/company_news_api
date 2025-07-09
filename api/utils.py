@@ -11,7 +11,7 @@ industry_sources = {
         "fintechnews.sg", "finews.asia", "thefintechtimes.com"
     ],
     "banking": [
-        "reuters.com", "bloomberg.com", "bankingtech.com", "thebanker.com", "americanbanker.com", "ft.com"
+        "reuters.com", "bloomberg.com", "bankingtech.com", "thebanker.com", "americanbanker.com"
     ],
     "energy": [
         "energetyka24.com", "energyvoice.com", "greentechmedia.com", "energylivenews.com", "power-technology.com",
@@ -44,9 +44,13 @@ industry_sources = {
         "cnet.com", "gizmodo.com", "mashable.com", "engadget.com"
     ],
     "real_estate": [
-        "therealdeal.com", "housingwire.com", "inman.com", "bloomberg.com", "ft.com", "propertywire.com"
+        "therealdeal.com", "housingwire.com", "inman.com", "bloomberg.com", "propertywire.com"
     ]
 }
+
+excluded_sources = [
+    "ft.com"
+]
 
 def filter_recent_news(news_list, max_age_days=730):
     cutoff = datetime.utcnow() - timedelta(days=max_age_days)
@@ -128,6 +132,8 @@ def filter_by_known_sources(news_list, target_industry, source_database):
         if any(trusted_source.lower() in link for trusted_source in trusted_sources):
             n["industry_score"] = 1.0  # Setting the highest possible score
             result_news_known_sources.append(n)
+        elif any(excluded_source.lower() in link for excluded_source in excluded_sources):
+            continue
         else:
             result_news.append(n)
     return result_news_known_sources, result_news
